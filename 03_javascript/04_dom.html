@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- 
+    * DOM
+      1. Document Object Model, 문서 객체 모델
+      2. HTML, XML 문서의 프로그래밍 인터페이스 
+      3. 프로그래밍 언어가 DOM 구조에 접근할 수 있는 방법을 제공하며 
+         문서의 구조, 스타일, 내용 등을 변경할 수 있게 도와줌
+      4. JavaScript에서는 html요소들을 DOM 구조로 인식하고 있음 
+         따라서 JavaScript에서는 요소들을 DOM 객체라함
+
+          ■■■ HTML ■■■                            ■■■ DOM tree ■■■
+        <html lang="ko">                              Document
+        <head>                                           ↓
+          <title>My Document</title>                    HTML
+        </head>                                     ↙          ↘
+        <body>                                  HEAD             BODY
+          <h1>Header</h1>                        ↓             ↙      ↘
+          <p>Paragraph</p>                     TITLE        H1          P
+        </bod.>                                  ↓           ↓          ↓
+        </htm.>                            "My Document"  "Header"  "Paragraph"
+  -->
+
+  <h2>DOM 객체 선택</h2>
+
+  <div class="wrap">
+    <div class="primary-box" id="box1">box1</div>
+    <div class="primary-box" id="box2">box2</div>
+    <div class="primary-box" id="box3">box3</div>
+  </div>
+  <h4 class="next">heading1</h4>
+  <h4 class="nnext">heading2</h4>
+
+  <script>
+    /*
+      * DOM 객체 반환 메소드 (즉, 요소를 선택하고자 할 때의 방법)
+        1. document.getElementById(id)            : 해당 id의 요소객체 한 개 반환 
+        2. document.getElementsByClassName(class) : 해당 class의 요소객체 여러개 반환 (배열의 형태)
+        3. document.getElementsByTagName(tag)     : 해당 tag의 요소객체 여러개 반환 (배열의 형태)
+        4. document.querySelector(selector)       : 해당 selector의 요소객체 한 개 반환 (첫번째 요소만)
+        5. document.querySelectorAll(selector)    : 해당 selector의 요소객체 여러개 반환 (배열의 형태)
+
+    */
+  </script>
+
+
+
+
+</body>
+</html>
