@@ -59,6 +59,7 @@
     */
 
     window.onload = function() { // dom요소들이 다 만들어진 후에 바로 실행되는 function 
+      console.log("=============================");
       console.log( document.getElementById("box1") );
       console.log( document.getElementsByClassName("primary-box") );
       console.log( document.getElementsByClassName("primary-box")[0] );
@@ -110,7 +111,7 @@
               ㄴ 속성값 수정하기 : 객체.prop = value;
                                    객체['prop'] = value;
 
-                                   
+
                        |     Attribute      |   Property
           -------------|--------------------|----------------------------------
               위치     | HTML               | DOM 
@@ -122,12 +123,100 @@
           checked 속성 | checked="checked"  | checked: true
             width 속성 | width="500px"      | width: 500
     */
+    
+
+    //console.log( document.querySelector("#div1 > img").getAttribute("src") );
+    //console.log( document.querySelector("#div1 > img").src );
+
+    const imgEl = document.querySelector("#div1 > img");
+
+    // HTML Attribute 이용 => 메소드 이용
+    // > 가져오기
+    console.log(imgEl.getAttribute("src"));
+    console.log(imgEl.getAttribute("alt"));
+    // > 수정하기
+    imgEl.setAttribute("src", "../assets/image/city2.jpg");
+    imgEl.setAttribute("width", "300px");
+    // > 삭제하기
+    imgEl.removeAttribute("height");
+
+    // DOM Property 이용 => 속성에 접근해서 이용
+    // > Property 정보 보고싶을때 : console.dir 출력
+    console.dir( imgEl ); 
+    // > 가져오기
+    console.log(imgEl.src);
+    console.log(imgEl['alt']);
+    // > 수정하기
+    imgEl.src = "../assets/image/city3.jpg";
+    // imgEl.width = "500px";
+    imgEl.width = 500; // width, height property는 number타입
+    imgEl.height = 100;
+  </script>
+
+  <h2>특정요소의 컨텐츠 영역 조작하기</h2>
+
+  <div id="div2"><b>안녕하세요</b></div>
+  <div id="div3"><b>어서오세요</b></div>
+
+  <button onclick="fnChangeContent();">컨텐츠영역조작</button>
+
+  <script>
+    function fnChangeContent() {
+      console.log("==========================");
+
+      const divEl2 = document.getElementById("div2");
+      const divEl3 = document.querySelector("#div3");
+
+      console.dir(divEl2);
+
+      // innerText property : 요소의 content영역값 (내부 텍스트)
+      console.log(divEl2.innerText);
+      console.log(divEl2.textContent);
+      divEl2.innerText = "수정잘되나";
+      divEl2.innerText = "<b>태그반영안됨</b>";
+
+      // innerHTML property : 요소의 content영역값 (내부 요소)
+      console.log(divEl3.innerHTML);
+      divEl3.innerHTML = "<b>태그반영잘됨</b>";
+      divEl3.innerHTML += "<h4>ㅋㅋㅋ</h4>";
+    }
+  </script>
+
+  <h2>특정요소의 checked속성 조작하기</h2>
+
+  <div id="div4">
+    <input type="checkbox" name="hobby" value="sports" id="sports">
+    <label for="sports">운동</label>
+    <input type="checkbox" name="hobby" value="cook" id="cook">
+    <label for="cook">요리</label>
+    <input type="checkbox" name="hobby" value="reading" id="reading">
+    <label for="reading">독서</label>
+    <input type="checkbox" name="hobby" value="study" id="study" checked="checked">
+    <label for="study">공부</label>
+  </div>
+
+  <script>
+    // Attribute 조작
+    document.getElementById("reading").setAttribute("checked", "checked");
+    document.getElementById("study").removeAttribute("checked");
+
+    // Property 조작
+    
   </script>
 
 
 
 
-  
+
+
+
+
+
+
+
+
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
 
 
