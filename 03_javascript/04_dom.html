@@ -39,6 +39,23 @@
         3. document.getElementsByTagName(tag)     : 해당 tag의 요소객체 여러개 반환 (배열의 형태)
         4. document.querySelector(selector)       : 해당 selector의 요소객체 한 개 반환 (첫번째 요소만)
         5. document.querySelectorAll(selector)    : 해당 selector의 요소객체 여러개 반환 (배열의 형태)
+
+      * 유의사항
+        1. 요소객체를 선택하는 구문은 요소보다 하단에 위치해 있어야됨
+           <scrip.t>
+              document.getElementById("btn")   // null (선택안됨)
+           </scrip.t>
+           <button id="btn">버튼</button>
+           <scrip.t>
+              document.getElementById("btn")   // 정상수행
+           </scrip.t>
+        2. 만일 소스코드를 요소보다 위에 두고자한다면
+           <scrip.t>
+              window.onload = function() { // 문서상의 모든 요소가 다 만들어진 후에 자동으로 실행
+                document.getElementById("btn") // 정상수행
+              } 
+           </scrip.t>
+           <button id="btn">버튼</button>           
     */
 
     window.onload = function() { // dom요소들이 다 만들어진 후에 바로 실행되는 function 
@@ -60,6 +77,55 @@
   </div>
   <h4 class="next">heading1</h4>
   <h4 class="nnext">heading2</h4>
+
+  <hr>
+
+  <h2>속성(Attribute 및 Property) 확인 및 조작하기</h2>
+
+  <div id="div1">
+    <img src="../assets/image/city1.jpg" width="100px" height="100px">
+  </div>
+
+  <script>
+    /*
+      * 요소가 가지는 속성 확인 및 제어하기
+        1. Attribute
+           1) HTML 태그내에 명시되어있는 속성을 의미 
+           2) 예시
+              <input type="text" name="mobile" id="mobile" class="inp">
+              ㄴ Attribute 총 4개 : type, name, id, class
+           3) 속성 제어하기 
+              ㄴ 속성값 가져오기 : 객체.getAttribute(attr)
+              ㄴ 속성값 수정하기 : 객체.setAttribute(attr, value);
+              ㄴ 속성   삭제하기 : 객체.removeAttribute(attr);
+
+        2. Property
+           1) DOM 객체가 가지고 있는 속성을 의미 
+           2) 개발자도구탭(F12) > Elements > Properties 확인 가능
+           3) 속성 접근 방식
+              ㄴ 객체.prop
+              ㄴ 객체['prop']
+           4) 속성 제어하기
+              ㄴ 속성값 가져오기 : 객체.prop | 객체['prop']
+              ㄴ 속성값 수정하기 : 객체.prop = value;
+                                   객체['prop'] = value;
+
+                                   
+                       |     Attribute      |   Property
+          -------------|--------------------|----------------------------------
+              위치     | HTML               | DOM 
+              확인     | [F12] - [Elements] | [F12] - [Elements] - [Properties]
+             Naming    | Dash Case          | Camel Case
+          -------------|--------------------|----------------------------------
+               id 속성 | id="man"           | id: "man"
+            class 속성 | class="blind"      | className: "blind"
+          checked 속성 | checked="checked"  | checked: true
+            width 속성 | width="500px"      | width: 500
+    */
+  </script>
+
+
+
 
   
 
