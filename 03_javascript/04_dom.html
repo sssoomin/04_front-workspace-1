@@ -266,11 +266,11 @@
   </select>
   <br>
   관심분야 : 
-  <input type="checkbox" value="java" id="java">
+  <input type="checkbox" class="interest" value="java" id="java">
   <label for="java">Java</label>
-  <input type="checkbox" value="oracle" id="oracle">
+  <input type="checkbox" class="interest" value="oracle" id="oracle">
   <label for="oracle">Oracle</label>
-  <input type="checkbox" value="front" id="front">
+  <input type="checkbox" class="interest" value="front" id="front">
   <label for="front">Front</label>
   <br>
 
@@ -278,6 +278,42 @@
   <br><br>
 
   <div id="result">결과 출력되는 영역</div>
+
+  <script>
+    document.getElementById("btn2").onclick = function() {
+      
+      // 사용자가 입력한 이름 value값
+      // 사용자가 선택한 거주지 value값
+      // 사용자가 체크한 관심분야 value값 가져오기
+
+      const inputEl = document.getElementById("username"); // input요소객체
+      const selectEl = document.getElementById("addr");    // select요소객체
+      const checkElList = document.querySelectorAll(".interest"); // [checkbox, checkbox, checkbox] 배열
+
+      // input요소객체의 값을 가져오고자할 때 value property 이용
+      console.log(inputEl.value);
+      console.log(selectEl.value);
+
+      const resultEl = document.getElementById("result");
+      resultEl.innerHTML = "<b>" + inputEl.value + "님은 " + selectEl.value + "에 거주합니다.</b><br>";
+   
+      resultEl.innerHTML += "관심분야는 ";
+
+      let count = 0;
+      for(let i=0; i<checkElList.length; i++){
+        if(checkElList[i].checked){
+          resultEl.innerHTML += checkElList[i].value + " ";
+          count++;
+        }
+      }
+
+      if(count == 0){
+        resultEl.innerHTML += "없습니다.";
+      }else{
+        resultEl.innerHTML += "입니다.";
+      }
+    }
+  </script>
 
 
 
