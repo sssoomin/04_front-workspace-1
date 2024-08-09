@@ -201,9 +201,83 @@
     document.getElementById("study").removeAttribute("checked");
 
     // Property 조작
-    
+    document.getElementById("cook").checked = true;
+    document.getElementById("sports").checked = true;
+    document.getElementById("reading").checked = false;
   </script>
 
+  <h2>특정요소의 CSS 조작하기</h2>
+
+  <button id="btn1" style="background-color:blue" onclick="fnChangeStyle();">버튼</button>
+
+  <script>
+    console.log("=======================");
+
+    const btnEl1 = document.getElementById("btn1");
+    btnEl1.innerHTML = "왕버튼";
+    console.dir(btnEl1);
+
+    // 스타일 수정하려면 style속성 내의 css속성까지 접근
+    btnEl1.style.backgroundColor = "red";
+    btnEl1.style.width = "150px";
+    btnEl1.style.height = "150px";
+    btnEl1.style.border = "3px dashed pink";
+    btnEl1.style.fontSize = "20px";
+  </script>
+
+  <hr>
+
+  <h2>연습1</h2>
+
+  <ul id="ul1">
+    <li>목록1</li>
+    <li>목록2</li>
+    <li>목록3</li>
+    <li>목록4</li>
+    <li>목록5</li>
+  </ul>
+
+  <script>
+    // li요소들의 문구를 모두 "안녕하세요"로 변경
+    // li요소들의 배경색을 모두 "yellow"로 변경
+
+    function fnChangeStyle() {
+      //const list = document.getElementsByTagName("li");
+      const list = document.querySelectorAll("#ul1 > li"); // [li, li, li, li, li]
+      let blueColor = 50;
+      for(let i=0; i<list.length; i++) {
+        list[i].innerHTML = "안녕하세요" + (i+1);
+        list[i].style.backgroundColor = "rgb(130, 220, " + blueColor + ")";
+        blueColor += 30;
+      }
+    }
+  </script>
+
+  <h2>연습2</h2>
+
+  이름 : <input type="text" id="username"> <br>
+  거주지 : 
+  <select id="addr">
+    <option>서울</option>
+    <option>부산</option>
+    <option>광주</option>
+    <option>대구</option>
+    <option>전주</option>
+  </select>
+  <br>
+  관심분야 : 
+  <input type="checkbox" value="java" id="java">
+  <label for="java">Java</label>
+  <input type="checkbox" value="oracle" id="oracle">
+  <label for="oracle">Oracle</label>
+  <input type="checkbox" value="front" id="front">
+  <label for="front">Front</label>
+  <br>
+
+  <input type="button" value="등록" id="btn2">
+  <br><br>
+
+  <div id="result">결과 출력되는 영역</div>
 
 
 
