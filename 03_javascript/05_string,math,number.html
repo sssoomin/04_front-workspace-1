@@ -83,6 +83,59 @@
            ㄴ 옵션 separator : 문자열 또는 정규식 가능
            ㄴ 옵션 limit : 끊어진 문자열의 최대 갯수, 배열의 요소가 limit개가 되면 split을 멈춤
     */
+
+    let str2 = "Hello World";
+
+    const resultEl2 = document.getElementById("result2");
+    resultEl2.innerHTML = str2 + "<br>";
+    resultEl2.innerHTML += str2.toUpperCase() + "<br>";
+    resultEl2.innerHTML += str2.toLowerCase() + "<br>";
+    resultEl2.innerHTML += "문자열의 길이: " + str2.length + "<br>";
+
+    for(let i=0; i<str2.length; i++){
+      resultEl2.innerHTML += i + "번째 인덱스: " + str2.charAt(i) + "<br>";
+    }
+
+    resultEl2.innerHTML += "l의 위치: " + str2.indexOf("l") + "<br>";
+    resultEl2.innerHTML += "5번인덱스부터 탐색: " + str2.indexOf("l", 5) + "<br>";
+    resultEl2.innerHTML += "뒤에서부터 탐색: " + str2.lastIndexOf("l") + "<br>";
+
+    resultEl2.innerHTML += str2.substring(6) + "<br>";
+    resultEl2.innerHTML += str2.substring(0, 4) + "<br>";
+
+    let str3 = "사과,바나나,복숭아,키위";
+    let fruits = str3.split(","); // ["사과", "바나나", "복숭아", "키위"]
+
+    for(let i=0; i<fruits.length; i++){
+      resultEl2.innerHTML += fruits[i] + "<br>";
+    }
+
+  </script>
+
+  <hr>
+
+  <h2>수학 관련 메소드</h2>
+  <div id="result3"></div>
+
+  <script>
+    /*
+      * Math 관련 메소드 
+        1) Math.abs(x) : x의 절대값 반환 
+        2) Math.pow(base, exponent) : base를 exponent 거듭제곱한 숫자 반환
+        3) Math.sqrt(x) : x의 루트값 반환, x가 음수일 경우 NaN 반환
+        4) Math.ceil(x) : x의 올림처리한 값 반환
+        5) Math.round(x) : x의 반올림처리한 값 반환
+        6) Math.floor(x) : x의 버림처리한 값 반환 
+        7) Math.random() : 0.0 이상 1.0 미만의 난수 반환
+        8) Math.max(value1[, value2[, ..]]) 
+           ㄴ 전달된 값들 중 가장 큰 값 반환 
+           ㄴ 숫자가 아닌 값 전달시 NaN 반환
+           ㄴ 전달값이 없을 경우 -Infinity 반환
+        9) Math.min(value1[, value2[, ..]])
+           ㄴ 전달된 값들 중 가장 작은 값 반환
+           ㄴ 숫자가 아닌 값 전달시 NaN 반환
+           ㄴ 전달값이 없을 경우 Infinity 반환
+    */
   </script>
   
 </body>
