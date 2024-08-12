@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <h2>배열</h2>
+
+  <script>
+    /*
+      * Array
+        1. 다수의 데이터들을 담을 수 있음
+        2. 크기에 제약없고, 타입에 제약없음 (자바에의 ArrayList와 유사)
+        3. 타입은 object
+        4. 형식 : [element, element, ...]
+        5. 선언 방법
+           1) 변수 = new Array([크기]);
+           2) 변수 = new Array(element, element, ..);
+           3) 변수 = [];
+           4) 변수 = [element, element, ..];
+        6. 배열내의 요소에 접근 방식
+           배열[index] 
+        7. 후행 쉼표(trailing comma)를 사용할 수 있음
+    */
+    function fnArrayDefine1() {
+      let arr1 = new Array(); 
+      let arr2 = new Array(3);
+      let arr3 = new Array('홍길동', 10, true, ); // 후행쉼표
+
+      console.log(arr1);
+      console.log(arr2);
+      console.log(arr3);
+
+      arr1[0] = 'a';
+      arr1[3] = 'b';
+      console.log(arr1);
+    }
+
+  </script>
+
+  <button onclick="fnArrayDefine1();">배열확인1</button>
+
+  
+</body>
+</html>

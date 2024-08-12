@@ -162,7 +162,64 @@
            ㄴ [Number.]parseInt(string)
            ㄴ [Number.]parseFloat(string)
     */
+
+    let i = 10;
+    let str = String(i);  // "10"
+    console.log(i, typeof i);
+    console.log(str, typeof str);
+
+    let j = Number(str); // "10" => 10
+    console.log(j, typeof j);
+    console.log(parseInt(str));
+    console.log(parseFloat(str));
+
+    // parseInt와 parseFloat 차이점
+    str = "2.74";
+    console.log(Number(str));
+    console.log(parseInt(str));   // 정수형태 2
+    console.log(parseFloat(str)); // 실수형태 2.34
+
+    // Number와 parseInt 차이점
+    // ex) 숫자가아닌 문자가 포함되어있을 경우
+    str = "10000.1원";
+    console.log(Number(str));     // NaN
+    console.log(parseInt(str));   // 숫자값만 반환 (정수형태로)
+    console.log(parseFloat(str)); // 숫자값만 반환 (실수형태로)
+
   </script>
+
+  <hr>
+
+  <h2>연습</h2>
+
+  정수1 : <input type="number" id="num1"> <br>
+  정수2 : <input type="number" id="num2"> <br>
+  <button onclick="fnSum();">덧셈</button>
+  <br><br>
+  <div id="result">결과 없음</div>
+
+  <script>
+    function fnSum(){
+      const num1Input = document.getElementById("num1"); // input요소객체
+      const num2Input = document.getElementById("num2"); // input요소객체
+
+      const resultDiv = document.getElementById("result"); // 결과출력div요소객체
+
+      if(num1Input.value && num2Input.value) {
+        // input요소의 value속성값은 무조건 string타입(문자열)
+        let sum = Number(num1Input.value) + Number(num2Input.value);
+        resultDiv.innerHTML = "덧셈결과: " + sum;
+      }else{
+        resultDiv.innerHTML = "숫자를 입력해주세요.".bold();
+      }
+
+      // 초기상태로 돌려두기
+      num1Input.value = "";
+      num2Input.value = "";
+
+    }
+  </script>
+
 
 
 
