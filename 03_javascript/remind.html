@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <button onclick="fnRemind1();">복습1</button>
+
+  <script>
+    function fnRemind1(){
+      console.log(name);
+      var name = "홍길동"; // var name;(호이스팅)  name='홍길동';
+      var name = "강개순"; // var는 재선언 가능
+      name = "김말순";     // var는 재할당 가능
+      console.log(name);
+
+      let age = 20;
+      // let age = 30;     // let은 재선언 불가능
+      age = 30;            // let은 재할당 가능 
+      console.log(age);
+
+      const academy = "구디아카데미"; // const는 반드시 초기화까지
+      // const academy = "KH정보교육원"; // const는 재선언 불가능
+      // academy = "KH정보교육원";       // const는 재할당 불가능
+      console.log(academy);
+
+      if(age < 40) {
+        var score = 100;
+        let grade = 'A';
+        const className = '빨간반';
+      }
+
+      console.log(score);         // var는 함수스코프
+      // console.log(grade);      // let은 블럭스코프
+      // console.log(className);  // const는 블럭스코프
+    }
+  </script>
+  <hr>
+  <button onclick="fnRemind2();">복습2</button>
+  <div id="result1"></div>
+
+  <script>
+    function fnRemind2(){
+      let name = prompt("이름 입력");
+      let age = prompt("나이 입력");
+
+      if(name && age){ // 둘 다 데이터가 입력되었을 경우 
+        if(confirm("20살 이상이면 확인 아니면 취소 누르삼")){
+          document.getElementById("result1").innerHTML = "<b>통과</b>";
+        }else {
+          document.querySelector("#result1").innerHTML = "<b>실패</b>";
+        }
+      }else{
+        document.getElementsByTagName("div")[0].innerHTML = "<b>값이 누락되었습니다. 다시입력해주세요</b>";
+      }
+
+    }
+  </script>
+
+  <hr>
+
+  <form action="" id="form">
+    이름 : <input type="text" id="userId"> <br>
+    나이 : <input type="number" id="userAge"> <br>
+    성별 : 
+    <input type="radio" name="gender" value="M" checked> 남
+    <input type="radio" name="gender" value="F"> 여
+    <br>
+    <button type="button" onclick="fnRemind3();">복습3</button>
+  </form>
+  
+
+  <div id="result2"></div>
+
+  <script>
+    function fnRemind3(){
+      // 사용자가 입력한 이름, 나이, 사용자가 선택한 성별값을
+      // #result2 영역에 출력해보시오. 
+      // 단, 성별이 M일 경우 남자, F일 경우 여자로 출력
+      let idInput = document.getElementById("userId");  // input요소객체
+      let ageInput = document.getElementById("userAge");// input요소객체
+      let genCheckedInput = document.querySelector("input[name=gender]:checked"); // checked상태인input요소객체
+
+      let resultDiv = document.getElementById("result2"); // div요소객체
+      resultDiv.innerHTML = "이름: " + idInput.value
+                        + ", 나이: " + ageInput.value
+                        + ", 성별: " + (genCheckedInput.value == "M" ? "남자" : "여자");
+
+      // 초기상태로 돌려두기 
+      /*
+      idInput.value = "";
+      ageInput.value = "";
+      document.querySelectorAll("input[name=gender]")[0].checked = true;
+      */
+
+      // form을 활용한 초기화
+      document.getElementById("form").reset();
+    }
+  </script>
+
+  <hr>
+
+  <button onclick="fnRemind4();">복습4</button>
+
+  <script>
+    function fnRemind4(){
+      let btnList = document.getElementsByTagName("button"); // [button, button, ..]
+
+      btnList[0].style.fontSize = "32px";
+      btnList[1].style.backgroundColor = "red";
+      btnList[2].style.border = "3px dashed blue";
+      btnList[3].style.width = "100px";
+    }
+  </script>
+  
+</body>
+</html>
