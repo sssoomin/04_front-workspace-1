@@ -192,12 +192,113 @@
       }
     }
 
+    function fnElementInsDel() {
+
+      let arr = ["탁구", "펜싱", "양궁", "사격"];
+      console.log(arr);
+      console.log(arr.push("수영"));
+      console.log(arr.pop());
+      console.log(arr);
+
+      console.log(arr.unshift("역도"));
+      console.log(arr);
+      console.log(arr.shift());
+      console.log(arr);
+      // 모두 원본배열내에서 진행됨
+    }
+
+    function fnElementRemove() {
+      let arr = ["Java", "Oracle", "HTML", "CSS", "JavaScript"];
+      console.log(arr.slice(1, 3)); // 1 <= < 3 범위의 요소들을 새 배열로 만들어서 반환
+      console.log(arr); // 제거된게 아님
+
+      console.log(arr.splice(1, 3)); // 1번 인덱스에서부터 3개 제거
+      console.log(arr); // 아예 제거됨
+
+      arr.splice(0, 1, "JSP", "Servlet", "Spring");
+      console.log(arr);
+    }
+
+    function fnElementSorting() {
+      let arr1 = ["김보람", "나보람", "강보람", "하보람", "다보람"];
+      console.log(arr1.sort()); // 기본적으로 오름차순 정렬
+      console.log(arr1);
+
+      // 만일 내림차순 정렬하고 싶으면
+      arr1.sort().reverse(); // 오름차순정렬=>역순정렬
+      console.log(arr1);
+
+      let arr2 = [30, 21, 101, 18, 1, 201, 70, 7];
+      console.log( arr2.sort() ); 
+      // 내부적으로 요소들을 문자열로 변환시켜 아스키코드 순서대로 정렬 (즉, 숫자의 크기대로 정렬x)
+
+      arr2.sort(function(a, b) {
+        //return 양수; // => 두 요소의 순서가 변경됨
+        //return 음수; // => 두 요소의 순서가 변경되지 않음
+
+        // 오름차순정렬 : 앞의 값(a)이 뒤의 값(b) 보다 더 클경우 순서 변경 == 양수반환 == return a-b;
+        // 내림차순정렬 : 앞의 값(a)이 뒤의 값(b) 보다 작을 경우 순서 변경 == 양수반환 == return b-a;
+      
+        //return a - b;
+        return b - a;
+      });
+      console.log(arr2);
+
+    }
+
+    function fnElementString() {
+      let months = ["Jan", "Feb", "Mar", "April", "May", "June"];
+
+      console.log(months);
+      console.log(months.toString());
+      document.getElementById("result").innerHTML = months/*.toString()*/ + "<br>";
+      // 화면상에 객체 출력시 객체.toString()가 자동으로 실행 
+
+      console.log(months.join());
+      console.log(months.join("→"));
+    }
   </script>
 
   <h2>배열의 속성 및 메소드</h2>
   <button onclick="fnArrayConcat();">concat메소드</button>
   <button onclick="fnFindElementIndex();">indexOf메소드</button>
-  
+  <button onclick="fnElementInsDel();">pushPop & [un]shift메소드</button>
+  <button onclick="fnElementRemove();">s[p]lice메소드</button>
+  <button onclick="fnElementSorting();">sort메소드</button>
+  <button onclick="fnElementString();">toStringJoin메소드</button>
+
+  <div id="result"></div>
+
+  <hr>
+
+  <button onclick="fnPractice1();">연습1</button>
+  <button onclick="fnPractice2();">연습2</button>
+
+  <div id="practiceResult"></div>
+
+  <script>
+    function fnPractice1() {
+      // 하단의 이미지명들이 담겨있는 배열을 통해서
+      // 연습1 버튼 클릭시 동적으로 img요소들을 생성해서
+      // #practiceResult 영역에 출력하시오.
+      // 단, 모든 이미지의 가로길이는 128px로, margin은 5px로 반영
+      const images = ['flower1.jpg', 'city1.jpg', "river1.jpg"];
+
+    }
+
+    function fnPractice2() {
+      // 하단의 링크명, 링크경로가 담겨있는 배열을 통해서
+      // 연습2 버튼 클릭시 동적으로 a 요소들을 생성해서
+      // #practiceResult 영역에 출력하시오. 
+      // 단, 링크 클릭시 새탭에 열리도록 설정
+      const sites = [
+        '네이버', 'https://www.naver.com/',
+        '구글',   'https://www.google.com/',
+        '카카오', 'https://www.kakao.com/',
+      ];
+      
+    }
+  </script>
 
 
 
