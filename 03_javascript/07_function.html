@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 
+    * 함수 작성 방법
+      1. 함수 선언식    function named() {}
+      2. 함수 표현식    const expression = function() {}
+      3. 화살표 함수    const arrow = () => {};
+  -->
+
+  <h2>함수 선언식 vs 함수 표현식</h2>
+  <script>
+    /*
+      * 함수 선언식
+        1. 함수 이름을 결정해서 함수를 정의하는 방식 (== 기명함수)
+        2. 함수 선언은 호이스팅(hoisting)이 되므로 코드 Line에 상관없이 언제든 호출 가능
+        3. 예시
+           named(); // 호출
+           function named() { // 정의
+              실행내용
+           }
+           named(); // 호출
+        4. 단, 동일한 이름의 함수가 다시 정의될 경우 오류 안나고 마지막 함수만 존재함
+    */
+
+    fnDeclare();
+
+    // 함수 선언(정의) => 호이스팅 됨
+    function fnDeclare() {
+      console.log("fnDeclare()");
+    }
+
+    function fnDeclare() {
+      console.log("새로정의함");
+    }
+
+    /*
+      * 함수 표현식
+        1. 함수를 변수에 저장하는 방식
+        2. 주로 익명함수를 변수에 저장함 (기명함수도 대입 가능하긴함)
+        3. 변수를 함수처럼 호출해서 사용할 수 있음
+        4. 함수 표현식은 호이스팅 되지 않음
+        5. 예시 
+           const expression1 = function() {
+              실행내용
+           }
+           expression1();
+
+           const expression2 = named; // 이미존재하는 기명함수를 변수에 대입
+    */
+
+    //fnExpression1(); // 호이스팅 되지 않음
+    const fnExpression1 = function() {
+      console.log("fnExpression1()");
+    }
+    fnExpression1();
+
+    const fnExpression2 = fnDeclare;
+    fnExpression2();
+  </script>
+
+  <hr>
+
+  <script>
+    /*
+      * 인자(전달값)와 매개변수 
+        1. 함수 호출시 전달되는 값을 인자[값]라고함
+           이때 해당 값을 받아주기 위해 매개변수를 정의해둘수 있음
+        2. 매개변수 선언시는 선언키워드(var, let, const) 사용하지 않음
+        3. 전개 구문(Spread Syntax) 또는 arguments 배열을 이용해서 
+           0개 이상의 인자를 처리할 수 있음
+        4. 인자가 전달되지 않는 경우에 사용할 디폴트값을 지정할 수 있음
+    */
+
+    /*
+    * 함수 선언식 방식
+    function fnParamTest(param) {
+
+    }
+    */
+
+    // * 함수 표현식 방식
+    const fnParamTest = function(param) {
+      console.log(param);
+    }
+
+    // * 전개구문 테스트
+    const fnSpreadTest = function(...args) { // ...args : 전개연산자
+      console.log(args); // 배열
+      for(let arg of args){
+        console.log(arg);
+      }
+    }
+
+    // * arguments 테스트
+    const fnArgumentsTest = function() {
+      // function마다 하나씩 존재하는 arguments 배열 : 인자값들이 담기는 배열
+      console.log(arguments);
+      for(let arg of arguments){
+        console.log(arg);
+      }
+    }
+
+    // * default 처리 테스트 
+    const fnDefaultTest = function(x, y=20) {
+      console.log("x:", x);
+      console.log("y:", y);
+    }
+
+  </script>
+
+  <h2>인자와 매개변수</h2>
+  <button onclick="fnParamTest('hello');">버튼1</button>
+  <button onclick="fnParamTest(10);">버튼2</button>
+  <button onclick="fnParamTest([1,2,3]);">버튼3</button>
+  <button onclick="fnParamTest(prompt('이름 입력'));">버튼4</button>
+  <!-- 매개변수수 보다 더 적은 인자 전달시 매개변수는 초기화 되지 않아 undefined -->
+  <button onclick="fnParamTest();">버튼5</button>
+  <!-- 매개변수수 보다 더 많은 인자 전달시 초과되는 값은 무시됨 -->
+  <button onclick="fnParamTest('a', 'b', 'c');">버튼6</button>
+
+  <h2>전개 구문</h2>
+  <button onclick="fnSpreadTest();">버튼1</button>
+  <button onclick="fnSpreadTest(1, 2);">버튼2</button>
+  <button onclick="fnSpreadTest('a', 'b', 'c');">버튼3</button>
+
+  <h2>arguments 배열</h2>
+  <button onclick="fnArgumentsTest();">버튼1</button>
+  <button onclick="fnArgumentsTest(1, 2);">버튼2</button>
+  <button onclick="fnArgumentsTest('a', 'b', 'c');">버튼3</button>
+
+  <h2>default 처리</h2>
+  <button onclick="fnDefaultTest(1, 2);">버튼1</button>
+  <button onclick="fnDefaultTest(1);">버튼2</button>
+  <button onclick="fnDefaultTest();">버튼3</button>
+
+  <script>
+    /*
+      * 매개변수에 this 인자 전달
+        1. 이벤트가 발생된 요소를 전달하고자 할 경우 this를 인자로 전달할 수 있음
+        2. 해당 함수 내에서 현재 이벤트가 발생된 요소를 제어할 수 있음
+    */
+    const fnClickedBtn = function(el) {
+      //console.log(el);
+      el.innerHTML = "클릭됨";
+    }
+
+    const fnClickedBtnValue = function(val) {
+      console.log(val);
+    }
+  </script>
+
+  <h2>this 관련 전달해보기</h2>
+  <button onclick="fnClickedBtn(this);">버튼1</button>
+  <button onclick="fnClickedBtn(this);">버튼2</button>
+
+  <!-- this(현재이벤트가발생되는요소객체).property 값 전달가능 -->
+  <input type="button" value="버튼3" onclick="fnClickedBtnValue(this.value);">
+  <input type="button" value="버튼4" onclick="fnClickedBtnValue(this.value);">
+  
+  <hr>
+
+  <script>
+    /*
+      * 반환 (return)
+        1. 반환값이 존재하더라도 반환타입은 작성하지 않음
+        2. return 값; 을 통해 값을 반환하면서 함수 종료 
+        3. return; 을 통해 함수 강제 종료
+    */
+    const fnReturnRanNum = function() {
+      // 1부터 10사이의 정수 랜덤값 반환 
+      // 자바 : (int)(Math.random() * 10 + 1)
+      return parseInt(Math.random() * 10 + 1);
+    }
+
+    const fnOneToRanNum = function() {
+      // 1부터 랜덤수까지 매번 1씩 증가되는 값 출력
+      let random = fnReturnRanNum();
+      for(let i=1; i<=random; i++){
+        console.log(i);
+      }
+    }
+
+    // 함수도 반환 가능
+    const fnReturnFunc = function() {
+      console.log("fnReturnFunc호출되었어요");
+      return function() {
+        console.log("fnReturnFunc호출시 반환되는 함수가 실행되었어요");
+      }
+    }
+
+    // 익명함수를 호출하고자 할때
+    /*
+    (function() {
+      console.log("이건 익명함수야");
+    })();
+    */
+  </script>
+
+  <h2>함수의 리턴</h2>
+  <button onclick="fnOneToRanNum();">버튼1</button>
+  <button onclick="fnReturnFunc()();">버튼2</button>
+
+  <hr>
+
+  <script>
+    /*
+      * 함수의 중첩
+        1. 함수 내부에서 사용할 또다른 함수를 선언할 수 있음
+        2. 외부함수는 내부함수의 변수를 사용할 수 없음
+           단, 내부함수는 외부함수의 변수를 사용할 수 있음
+    */
+    function fnOuter(a) {
+      console.log("fnOuter()", a);
+
+      fnInner(a+1);
+      function fnInner(b) {
+        console.log("fnInner()", a, b); // 내부함수에서는 외부함수의 변수 사용 가능
+      }
+      //console.log(b); // 외부함수에서는 내부함수 변수 사용 불가능
+    }
+  </script>
+
+  <h2>함수의 중첩</h2>
+  <button onclick="fnOuter(10);">버튼</button>
+
+  <hr>
+
+  
+
+
+
+
+</body>
+</html>

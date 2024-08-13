@@ -284,6 +284,11 @@
       // 단, 모든 이미지의 가로길이는 128px로, margin은 5px로 반영
       const images = ['flower1.jpg', 'city1.jpg', "river1.jpg"];
 
+      // <img src="../assets/image/xxx" width="128px" style="margin: 5px">
+      const resultEl = document.getElementById("practiceResult");
+      for(let fileName of images){
+        resultEl.innerHTML += '<img src="../assets/image/' + fileName + '" width="128px" style="margin: 5px">';
+      }
     }
 
     function fnPractice2() {
@@ -296,7 +301,13 @@
         '구글',   'https://www.google.com/',
         '카카오', 'https://www.kakao.com/',
       ];
-      
+
+      // <a href="xxxxx" target="_blank">xxx</a>
+      const resultEl = document.getElementById("practiceResult");
+
+      for(let i=0; i<sites.length; i+=2){
+        resultEl.innerHTML += '<a href="' + sites[i+1] + '" target="_blank">' + sites[i] + "</a><br>";
+      }
     }
   </script>
 
