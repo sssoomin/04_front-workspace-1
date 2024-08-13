@@ -44,15 +44,91 @@
           name: '나길동',
           age: 29
         }
-      ]
+      ],
     }
 
     function fnObjectDefine() {
       console.log(person);
+      console.log("이름:", person.name);
+      console.log("나이:", person['age']);
+      console.log("취미:", person.hobbies);
+      for(let hobby of person.hobbies){
+        console.log(hobby)
+      }
+      console.log("주소:", person.home.address);
+      console.log("전화:", person.home.phone);
+
+      console.log("친구목록"); // person.friends : [{친구객체1}, {친구객체2}]
+      for(let friend of person.friends){ // friend = {친구객체1} => friend = {친구객체2}
+        console.log('이름:', friend.name, '나이:', friend.age);
+      }
+
     }
+
+    /*
+      * 객체에서의 for in문
+        1. 객체가 가지고 있는 속성(property)명을 임의의 순서로 순차적으로 반환 
+        2. 반환되는 속성명은 string타입이므로 속성값을 확인하기 위해서
+           대괄호 표기법을 사용해야됨 
+        3. 조회 목적으로만 사용하는게 좋고 추가/수정/제거는 하지 않는게 좋음
+
+        for(속성받을변수 in 객체) {
+          실행내용
+        }
+    */
+    function fnForObject() {
+      for(let prop in person){ // 'name' 'age' 'hobbies' 'friends' 'home'
+        // console.log(prop, person.prop);
+        console.log(prop, person[prop]); // 대괄호표기법만 가능
+      }
+    }
+
+    /*
+      * 객체 속성(property)
+        1. 동적 프로퍼티 생성 가능 
+        2. delete 연산자를 이용해서 동적으로 프로퍼티 삭제 가능
+        3. function 자료형의 속성을 메소드라고 함
+    */
+    function fnProperty() {
+
+      // 객체 생성
+      const movie = {
+        title: '데드풀과 울버린',
+        'title en': 'Deadpool',
+        showTm: 128,
+        openDt: '2024-07-24',
+        status: '개봉',
+        printActor: (flag) => {
+          if(flag == "주연"){
+            console.log('라이언 레이놀즈');
+            console.log('휴 잭맨');
+          }else if(flag == "조연"){
+            console.log('카란 소니');
+            console.log('모레나 바카린');
+          }
+        }
+      };
+
+      movie.printActor("조연");
+      movie.printActor('주연');
+
+      // 동적으로 프로퍼티 추가
+      movie.nation = '미국';
+
+      // 프로퍼티 변경
+      movie['title en'] = 'Deadpool & Wolverine';
+
+      // 프로퍼티 삭제
+      delete movie.status;
+
+      console.log(movie);
+    }
+
   </script>
 
   <button onclick="fnObjectDefine();">객체확인</button>
+  <button onclick="fnForObject();">for in문</button>
+  <button onclick="fnProperty();">프로퍼티확인</button>
   
 </body>
 </html>
