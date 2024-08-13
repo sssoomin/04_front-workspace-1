@@ -106,6 +106,13 @@
             console.log('카란 소니');
             console.log('모레나 바카린');
           }
+        },
+        toString: function() {
+          // 메소드 내에서 현재 객체를 가리키고자할 경우 this.
+          // 단, 화살표함수내에서는 this 제대로 반영 안됨 => this 대신에 객체사용
+          return "제목: " + this.title + "<br>"
+               + "상영시간: " + this.showTm + "<br>"
+               + "개봉일: " + this.openDt + "<br>";
         }
       };
 
@@ -122,6 +129,8 @@
       delete movie.status;
 
       console.log(movie);
+
+      document.getElementById("result1").innerHTML = movie/*.toString()*/;
     }
 
   </script>
@@ -129,6 +138,8 @@
   <button onclick="fnObjectDefine();">객체확인</button>
   <button onclick="fnForObject();">for in문</button>
   <button onclick="fnProperty();">프로퍼티확인</button>
+
+  <div id="result1"></div>
   
 </body>
 </html>
