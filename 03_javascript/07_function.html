@@ -265,9 +265,55 @@
                  실행내용
               }
     */
+
+    // 기존에 익명함수를 통한 함수 표현식
+    const fnExp1 = function() {
+      console.log("fnExp1");
+    }
+    const fnExp2 = function(a) {
+      console.log("fnExp2");
+      console.log(a);
+    }
+    const fnExp3 = function(a, b) {
+      console.log("fnExp3");
+      console.log(a, b);
+      return a+b;
+    }
+    const fnExp4 = function(a, b) {
+      return a+b;
+    }
+
+    // 위의 내용들을 화살표 함수로 작성
+    const fnArrow1 = () => console.log("fnArrow1"); // 단일실행문은 {} 생략가능
+    const fnArrow2 = a => {   // 단일매개변수는 () 생략가능
+      console.log("fnArrow2");
+      console.log(a);
+    };
+    const fnArrow3 = (a, b) => {
+      console.log("fnArrow3");
+      console.log(a, b);
+      return a+b;
+    }
+    const fnArrow4 = (a, b) => a+b; 
+    // 별도의 실행문없이 바로 return 결과값; 일 경우 {}, return 생략가능
+
+    // 단, 화살표함수 사용시에는 arguments 사용 불가 (전개연산자 사용하면됨)
+    const fnArrow5 = () => {
+      console.log(arguments);
+    }
+    const fnArrow6 = (...args) => {
+      console.log(args);
+    }
+
   </script>
+  <h2>화살표 함수</h2>
+  <button onclick="fnArrow1();">fnArrow1</button>
+  <button onclick="fnArrow2(10);">fnArrow2</button>
+  <button onclick="console.log(fnArrow3(10, 20));">fnArrow3</button>
+  <button onclick="console.log(fnArrow4(100, 200));">fnArrow4</button>
 
-
+  <button onclick="fnArrow5(1, 2, 3);">fnArrow5</button>
+  <button onclick="fnArrow6(1, 2, 3);">fnArrow6</button>
 
 
 
