@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <h2>객체</h2>
+  <script>
+    /*
+      * 객체
+        1. JavaScript 데이터 유형 중 하나 
+        2. 중괄호{}로 생성하면 각 데이터는 "속성(property): 값(value)"로 정의함
+        3. 후행 쉼표(trailing comma)를 사용할 수 있음 
+        4. 형식
+           변수 = {
+              속성: 값,
+              속성: 값,
+              속성: 값,
+           };
+        5. 객체 내에 정의되어있는 속성에 접근하는 방법
+           1) 점(.) 표기법      : 객체.속성
+           2) 대괄호([]) 표기법 : 객체['속성']
+    */
+    const person = {
+      name: '홍길동',
+      age: 30,
+      hobbies: [
+        'game', 
+        'travel'
+      ],
+      home: {
+        'address': 'seoul',
+        'phone': '02-123-4567'
+      },
+      friends: [
+        {
+          name: '고길동',
+          age: 30
+        }, 
+        {
+          name: '나길동',
+          age: 29
+        }
+      ]
+    }
+
+    function fnObjectDefine() {
+      console.log(person);
+    }
+  </script>
+
+  <button onclick="fnObjectDefine();">객체확인</button>
+  
+</body>
+</html>

@@ -315,7 +315,72 @@
   <button onclick="fnArrow5(1, 2, 3);">fnArrow5</button>
   <button onclick="fnArrow6(1, 2, 3);">fnArrow6</button>
 
+  <hr>
 
+  <script>
+    /*
+      * 콜백함수
+        1. 인자로 다른 함수에 전달되서 실행되는 함수
+        2. a함수를 전달받은 b함수는 본문에서 a함수를 다시 호출해야되므로 callback이라함
+    */
+
+    // 예시. 로그인 기능구현시마다 아이디/비번/이메일/토큰 중에
+    //       매번 두개를 체크해야된다고 가정해야됨 
+
+    // > 각 체크를 담당하는 함수들을 미리 정의
+    const fnIdCheck = () => {
+      console.log("아이디체크");
+    }
+    const fnPwdCheck = () => {
+      console.log("비밀번호체크");
+    }
+    const fnEmailCheck = () => {
+      console.log("이메일체크");
+    }
+    const fnTokenCheck = () => {
+      console.log("토큰체크");
+    }
+
+    // > 로그인을 처리하는 함수 정의
+    //   이때 체크해야될 두개의 함수를 콜백함수로 전달받기
+    const fnLogin = (fnCheck1, fnCheck2) => {
+      fnCheck1();
+      fnCheck2();
+      // 전달된 각 함수를 실행
+    }
+  </script>
+
+  <h2>콜백함수</h2>
+
+  <!-- case1. 아이디 및 비번 체크해야될 경우 -->
+  <button onclick="fnLogin(fnIdCheck, fnPwdCheck);">로그인1</button>
+  <!-- case2. 이메일 및 비번 체크해야될 경우 -->
+  <button onclick="fnLogin(fnEmailCheck, fnPwdCheck);">로그인2</button>
+  <!-- case3. 아이디 및 토큰 체크해야될 경우 -->
+  <button onclick="fnLogin(fnIdCheck, fnTokenCheck)">로그인3</button>
+
+  <!-- 
+    * 따라서 fnLogin함수를 콜백함수 사용방식으로 정의해둘 경우
+      유동적으로 실행시키고자 하는 함수를 전달시켜서 실행시킬 수 있음
+  -->
+
+  <script>
+    // 특정함수와 해당 함수를 실행시킬 횟수를 전달받는 함수 정의 
+    const fnRepeat = (fnAction, count) => {
+      // fnAction : 콜백함수
+      // count    : 콜백함수를 실행시킬 횟수
+      for(let i=0; i<count; i++){
+        fnAction();
+      }
+    }
+
+    fnRepeat(fnIdCheck, 10);  // 이미 정의되어있는 함수 전달
+    fnRepeat(function(){
+      console.log("Hi EveryOne");
+    }, 20);
+    fnRepeat(() => console.log("Do Action"), 30);
+
+  </script>
 
 
 </body>
