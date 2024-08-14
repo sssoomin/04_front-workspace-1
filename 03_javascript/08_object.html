@@ -407,9 +407,14 @@
       // model 값이 'K'로 시작할 경우 maker: 'Kia'
       // model 값이 'G'로 시작할 경우 maker: 'Genesis'
       // 가 추가되도록
-
-
-
+      for(let car of cars) { // {}, {}, {}
+        if(car.model.startsWith('K')){
+          car.maker = 'Kia';
+        }else if(car.model.startsWith('G')){
+          car.maker = 'Genesis';
+        }
+      }
+      
       console.log(cars);
 
     }
