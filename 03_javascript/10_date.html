@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <script>
+    /*
+      * Date 내장 객체 
+        1. 특정 날짜 및 시간 정보를 가지는 객체
+        2. 생성자를 통해 생성
+           1) new Date()
+           2) new Date(year, monthIndex)      // monthIndex : 0 ~ 11
+           3) new Date(year, monthIndex, day)
+           4) new Date(year, monthIndex, day, hours)
+           5) new Date(year, monthIndex, day, hours, minutes)
+           6) new Date(year, monthIndex, day, hours, minutes, seconds)
+           7) new Date(year, monthIndex, day, hours, minutes, seconds, milliseconds)
+        3. 주요 메소드
+           1) Date객체.now()         : 타임스탬프 반환
+           2) Date객체.getFullYear() : 년도 반환 
+           3) Date객체.getMonth()    : 월 반환 (0-11)
+           4) Date객체.getDate()     : 일 반환  (1-31)
+           5) Date객체.getDay()      : 요일 반환 (일-토 : 0-6)
+           6) Date객체.getHours()    : 시 반환 (0-23)
+           7) Date객체.getMinutes()  : 분 반환 (0-59)
+           8) Date객체.getSeconds()  : 초 반환 (0-59)
+           9) Date객체.getTime()     : 밀리초 반환 
+    */
+
+    //function fnDateTest() {
+    //const fnDateTest = function() {
+    const fnDateTest = () => {
+
+      const now = new Date();     // 현재 시스템 날짜 및 시간
+      console.log(now, typeof now);
+
+      // 특정 날짜 및 시간으로 세팅 : 2024년 1월 1일 12시 0분 0초
+      const dateTime = new Date(2024, 0, 1, 12);
+      console.log(dateTime);
+
+      const year = now.getFullYear();
+      const month = now.getMonth();
+      const day = now.getDate();
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+      console.log(year + '-' + (month+1) + "-" + day 
+          + " " + hour + ":" + minute + ":" + second);
+    }
+
+    const fnDday = () => {
+
+      const now = new Date();                   // 현재 날짜
+      const finalDate = new Date(2024, 11, 11); // 종강 날짜
+
+      console.log(finalDate - now); // 밀리세컨초 단위 
+
+      /*
+        1s == 1000ms
+        1m == 60s == 60*1000ms
+        1h == 60m == 60*60s == 60*60*1000ms
+        1d == 24h == 24*60m == 24*60*60s == 24*60*60*1000ms
+      */
+      const dday = (finalDate-now) / (24*60*60*1000); // 일 단위로 환산
+      alert('종강까지 ' + Math.round(dday) + "일 남았습니다.");
+    }
+  </script>
+
+  <h2>Date 내장객체</h2>
+  <button onclick="fnDateTest();">Date객체확인</button>
+  <button onclick="fnDday();">dday구하기</button>
+
+
+  
+</body>
+</html>
