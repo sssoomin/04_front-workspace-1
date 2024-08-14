@@ -140,6 +140,202 @@
   <button onclick="fnProperty();">프로퍼티확인</button>
 
   <div id="result1"></div>
+
+  <script>
+    function fnRemind() {
+      // 객체 생성
+      const book = {
+        title: '바람의 딸 걸어서 지구 세바퀴 반',
+        author: '한비야',
+        price: 10000,
+        toString: function(){
+          return this.title + "<br>" + this.price + "원";
+        }
+      };
+
+      // 프로퍼티 추가
+      book.publishDt = '2024-08-14';
+
+      // 프로퍼티 변경
+      book.price = 20000;
+
+      // 프로퍼티 제거
+      delete book.author;
+
+      // 객체 프로퍼티 순회
+      for(let prop in book) {
+        console.log(prop + ": " + book[prop]);
+      }
+
+      console.log(book);
+      document.getElementById("result1").innerHTML = book/*.toString()*/;
+    }
+  </script>
+  <button onclick="fnRemind();">복습</button>
+
+  <hr>
+
+  <h2>in과 with 키워드</h2>
+
+  이름 : <input type="text" id="name"> <br>
+  국어 : <input type="number" id="kor"> <br>
+  수학 : <input type="number" id="math"> <br>
+  영어 : <input type="number" id="eng"> <br><br>
+
+  <button onclick="fnInWith();">실행확인</button>
+  <div id="result2"></div>
+
+  <script>
+    function fnInWith() {
+
+      const student = {
+        name: document.getElementById("name").value,
+        kor: Number(document.getElementById("kor").value), // "70" => 70
+        math: Number(document.getElementById("math").value),
+        eng: Number(document.getElementById("eng").value),
+        toString: function() {
+          return this.name + " " + this.kor + " " + this.math + " " + this.eng;
+        },
+        getSum: function() {
+          return this.kor + this.math + this.eng;
+        },
+        getAvg: function() {
+          return this.getSum() / 3;
+        }
+      }
+
+      console.log(student);
+      document.getElementById("result2").innerHTML = student;
+
+      /*
+        * in 과 with 키워드
+          1) in   : 객체 내에 해당 속성이 있는지 확인해주는 키워드 (존재할경우 true/아니면 false)
+          2) with : 객체의 속성 접근시 객체명 제시하는걸 생략하게 도와주는 키워드  
+      */
+      console.log("name" in student);
+      console.log("age" in student);
+
+      with(student){
+        console.log('학생이름:', name);
+        console.log('점수:', kor, math, eng);
+        console.log('총점:', getSum());
+        console.log('평균:', getAvg());
+      }
+    }
+  </script>
+
+  <hr>
+
+  <script>
+    /*
+      * 구조 분해 할당 
+        1. Destructuring Assignment
+        2. 객체의 각 프로퍼티 값을 개별 변수에 쉽게 할당할 수 있는 표현식
+        3. 단, 객체의 프로퍼티명과 개별 변수명을 동일하게 맞춰야함
+        4. 형식
+           { 변수1, 변수2, .. } = 객체;
+    */
+    function fnDestructuring1() {
+      const car = {
+        maker: 'bmw',
+        model: 'x6',
+        year: 2024
+      };
+
+      // * 직접 대입 방법
+      /*
+      let maker = car.maker;
+      let model = car.model;
+      let year = car.year;
+      */
+
+      // * 구조 분해 할당 방법 
+      //   1) 선언과 동시에 할당 
+      //let { maker, model, year } = car;
+
+      //   2) 선언 후 할당 
+      let maker, model, year;         // 선언후 
+      ({ maker, model, year } = car); // 대입하고자 할경우 반드시 ()로 묶어야됨
+
+
+      console.log(maker, model, year);
+    }
+
+    function fnDestructuring2() {
+      const qna = {
+        q: '한국의 수도는?',
+        a: '서울'
+      };
+
+      // 변수명이 프로퍼티명과 다르기 때문에 바로 대입 안됨
+      //let {question, answer} = qna;
+
+      // * 프로퍼티명과 이름이 다른 변수에 대입하고자 할 경우
+      let {q: question, a: answer} = qna;
+
+      console.log(question, answer);
+
+    }
+  </script>
+
+  <h2>구조 분해 할당</h2>
+  <button onclick="fnDestructuring1();">구조분해할당1</button>
+  <button onclick="fnDestructuring2();">구조분해할당2</button>
+
+  <hr>
+
+  <script>
+    function fnObjectArray() {
+
+      const students = [
+        {
+          name: '김말똥',
+          java: 100,
+          oracle: 80,
+        },
+        {
+          name: '홍길동',
+          java: 80,
+          oracle: 70,
+        },
+        {
+          name: '강개순',
+          java: 60,
+          oracle: 100,
+        },
+      ];
+
+      students.push({
+        name: '김개똥',
+        java: 70,
+        oracle: 40,
+      });
+
+      console.log(students);
+      console.log(students[0]);
+      console.log(students[0].name);
+      console.log("-------------");
+
+      for(let stu of students) { // {}, {}, {}, {}
+        // console.log(stu);
+        stu.front = 100;
+        stu.getSum = function(){
+          return this.java + this.oracle + this.front;
+        };
+        stu.getAvg = function(){
+          return this.getSum() / 3;
+        };
+      }
+
+      console.log(students);
+    }
+  </script>
+  <h2>객체배열</h2>
+  <button onclick="fnObjectArray();">객체배열확인</button>
+
+
+
+
   
 </body>
 </html>
