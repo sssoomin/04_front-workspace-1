@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 
+    * 정규표현식
+      1. Regular Expression 
+      2. 어떤 문자열이 특정 패턴을 가지고 있는지 확인하기 위한 표현식
+      3. 정규표현식을 잘 쓰게 되면 복잡한 조건검사할 필요 없음
+      4. JavaScript 정규식 작성 예시
+         1) 리터럴 표기법
+            const reg = /pattern/[flags];
+         2) 생성자 이용
+            const reg = new RegExp('pattern'[, 'flags']);
+            const reg = new RegExp(/pattern/[, 'flags']);
+      5. 정규식과 관련된 메소드
+         1) 정규식.test(문자열)       : 문자열 중 정규식과 일치하는 부분이 있으면 true / 없으면 false 반환 
+         2) 문자열.search(정규식)     : 문자열 중 정규식과 일치하는 부분의 시작인덱스 반환 / 없으면 -1반환
+         3) 문자열.replace(정규식, 바꿀값) : 문자열에서 정규식과 일치하는 부분을 바꿀값으로 치환해서 반환 
+  -->
+  
+  <script>
+    /*
+      * 정규식 메타 문자
+        1) .
+           ㄴ 모든 단일 문자를 의미
+           ㄴ ex) b.at : (o) baat, bbat, bcat, bdat, .. / (x) bat, baaat
+        2) *
+           ㄴ 0개 이상의 문자를 의미 
+           ㄴ ex) good* : (o) goo, good, gooddd, ..
+           
+    */
+  </script>
+
+
+  
+</body>
+</html>

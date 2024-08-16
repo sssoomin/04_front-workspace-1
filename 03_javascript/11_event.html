@@ -344,6 +344,63 @@
     <input type="submit" id="submit">
   </form>
 
+  <script>
+    /*
+      * 디폴트 이벤트
+        1. 몇 DOM객체는 특정 이벤트를 이미 가지고 있음
+        2. 주요 디폴트 이벤트
+           1) <a> 태그는 click시 href속성으로 이동함
+           2) <form> 내의 submit 버튼은 click시 서버측으로 데이터 전송
+        3. 디폴트 이벤트 막기
+           이벤트 객체의 preventDefault() 메소드 호출
+    */
+    document.getElementById("naver-link").addEventListener("click", function(evt) {
+      confirm('페이지 이동하시겠습니까?') || evt.preventDefault();
+    })
+
+    document.getElementById("submit").addEventListener("click", evt => {
+      
+      // 아이디가 영문 또는 숫자로만 5글자이상 12글자 이하로 이루어져있는지 체크
+      const userId = document.getElementById("userId").value;
+
+      /*
+      if(userId.length >= 5 && userId.length <= 12){
+        for(let i=0; i<userId.length; i++){
+          if(userId.charAt(i) >= 0 && userId.charAt(i) <= 9
+            || userId.charAt(i) >= 'a' && userId.charAt(i) <= 'z'
+              || userId.char~~~) {
+
+              }else{
+                alert("아이디가 틀림");
+                evt.preventDefault();
+              }
+        }
+      }else{
+        alert("아이디가 틀림");
+        evt.preventDefault();
+      }*/
+
+      let idRegExp = /^[a-zA-Z0-9]{5,12}$/; // 정규표현식
+      if(!idRegExp.test(userId)){
+        alert('아이디를 잘못 입력하셨습니다.');
+        evt.preventDefault();
+        return;
+      }
+      
+      
+      // 두 비밀번호가 일치하지 않을 경우 알람창 출력후 디폴트이벤트 막기
+
+      const userPwdInput = document.getElementById("userPwd");
+      const checkPwdInput = document.getElementById("checkPwd");
+
+      if(userPwdInput.value != checkPwdInput.value){
+        alert("비밀번호가 일치하지 않습니다. 다시입력해주세요");
+        checkPwdInput.focus();
+        evt.preventDefault();
+      }
+    })
+  </script>
+
 
 
 
