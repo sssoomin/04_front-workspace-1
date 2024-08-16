@@ -232,9 +232,118 @@
 
   <h2>적용예시</h2>
 
-  <button id="red">red</button>
-  <button id="green">green</button>
-  <button id="blue">blue</button>
+  <!-- 세버튼 클릭시 해당 버튼의 배경색을 해당 버튼의 innerHTML값으로 변경 -->
+  <button id="red" onclick="fnChangeBackground();">red</button>
+  <button id="green" onclick="fnChangeBackground();">green</button>
+  <button id="blue" onclick="fnChangeBackground();">blue</button>
+  <button onclick="fnChangeBackground()">pink</button>
+
+  <script>
+    /*
+    function fnChangeRed(){
+      document.getElementById("red").style.backgroundColor = "red";
+    }
+
+    function fnChangeBlue(){
+      document.getElementById("blue").style.backgroundColor = "blue";
+    }
+
+    function fnChangeGreen(){
+      document.getElementById("green").style.backgroundColor = "green";
+    }
+    */
+
+    function fnChangeBackground() {
+      const clickedBtn = window.event.target;
+      clickedBtn.style.backgroundColor = clickedBtn.innerHTML;
+    }
+  </script>
+
+  <hr>
+
+  <h2>키보드 관련 이벤트</h2>
+  <span id="text_length">0</span> / 200 <br>
+  <textarea id="content" cols="30" rows="10" style="resize:none" placeholder="내용을 입력해주세요"></textarea>
+
+  <script>
+    /*
+      * 키보드 관련 이벤트 종류 
+        1) keydown  : 키가 눌려질때 발생되는 이벤트 (모든 키 감지)
+        2) keypress : 키가 눌려질때 발생되는 이벤트 (펑션키, 기능키, 한글 제외한 키 감지)
+        3) keyup    : 키가 떼어질때 발생되는 이벤트 (모든 키 감지)
+    */
+    document.getElementById("content").onkeyup = function(evt) {
+      //console.log('이벤트발생');
+      //console.log(evt);
+      console.log('key속성:', evt.key);
+      console.log('keyCode속성:', evt.keyCode); // Enter키 == 13
+      console.log('입력란에 작성된값:', evt.target.value);
+      console.log("----------------");
+
+      document.getElementById("text_length").innerHTML = evt.target.value.length;
+    }
+  </script>
+
+  <hr>
+
+  <h2>이벤트 전파</h2>
+  <style>
+    .bubbling { margin: 10px; border: 1px solid gray; }
+    #child { width: 160px; }
+    #parent { width: 200px; }
+    #ancestor { width: 240px; }
+  </style>
+  <div id="ancestor" class="bubbling">
+    조상div
+    <div id="parent" class="bubbling">
+      부모div
+      <div id="child" class="bubbling">
+        자식div
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /*
+      * 이벤트 전파
+        1. 이벤트 버블링(Event Bubbling) 이라고도 함
+        2. 요소들이 중첩되어있을 경우 내부 요소에 이벤트 핸들러가 동작된 후
+           상위 요소들의 이벤트 핸들러도 같이 동작되는 현상
+        3. 최상위 요소에 도달할 때 까지 반복적으로 진행됨 
+        4. 이벤트 객체의 stopPropagation() 메소드를 통해 이벤트 전파를 중지시킬 수 있음
+    */
+    const ancestor = document.getElementById("ancestor");
+    const parent = document.getElementById("parent");
+    const child = document.getElementById("child");
+
+    ancestor.addEventListener("click", evt => {
+      console.log('조상div 이벤트핸들러 작동');
+    });
+    parent.addEventListener("click", evt => {
+      console.log('부모div 이벤트핸들러 작동');
+      evt.stopPropagation();
+    });
+    child.addEventListener("click", evt => {
+      console.log('자식div 이벤트핸들러 작동');
+      evt.stopPropagation(); // 이벤트 전파 막기
+    });
+
+  </script>
+
+  <hr>
+
+  <h2>디폴트 이벤트</h2>
+
+  <a id="naver-link" href="http://www.naver.com" target="_blank">네이버로 이동</a>
+  <br><br>
+
+  <form action="/server/test.do" method="get">
+    아이디 : <input type="text" name="userId" id="userId"> <br>
+    비밀번호 : <input type="password" name="userPwd" id="userPwd"> <br>
+    비밀번호 확인 : <input type="password" id="checkPwd"> <br><br>
+    <input type="submit" id="submit">
+  </form>
+
 
 
 
