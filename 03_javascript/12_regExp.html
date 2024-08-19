@@ -215,12 +215,110 @@
       }else{
         resultEl.innerHTML = '휴대전화 형식에 맞지 않습니다.';
         resultEl.style.color = 'red';
-        mobileInput.focus();
+        mobileInput.select();
       }
     }
 
     document.getElementById('mobile-btn').addEventListener('click', verifyMobile);
   </script>
+
+  <hr>
+
+  <h2>아이디 검사하기</h2>
+  아이디 : <input type="text" id="userId" placeholder="ex) user_01">
+  <button id="userId-btn">확인</button>
+  <div id="userId-result"></div>
+
+  <script>
+    // 아이디 검사용 함수
+    const verifyUserId = () => {
+
+      // 5~20자, 소문자/숫자/특수문자(-,_), 첫글자 소문자로 이뤄져있는지 비교할 패턴
+      const regUserId = /^[a-z][a-z0-9-_]{4,19}$/;
+      const userIdInput = document.getElementById('userId');
+      const resultEl = document.getElementById('userId-result');
+
+      if(regUserId.test(userIdInput.value)){
+        resultEl.innerHTML = '아이디 형식입니다.';
+        resultEl.style.color = 'green';
+      }else{
+        resultEl.innerHTML = '아이디 형식에 맞지않습니다.';
+        resultEl.style.color = 'red';
+        userIdInput.select();
+      }
+
+    }
+
+    document.getElementById('userId-btn').onclick = verifyUserId;
+  </script>
+
+  <hr>
+
+  <h2>비밀번호 검사하기</h2>
+  비밀번호 : <input type="text" id="userPwd" placeholder="ex) Password12!@">
+  <button id="userPwd-btn">확인</button>
+  <div id="userPwd-result"></div>
+
+  <script>
+    // 비밀번호 검사용 함수
+    const verifyUserPwd = () => {
+      // 5~20자, 대문자/소문자/숫자/특수문자(공백은제외), 3가지이상 사용하고 있는지 비교할 패턴
+      // const regUserPwd = /^[a-zA-Z0-9!@#$%^&*()]{5,20}$/;
+
+      const userPwdInput = document.getElementById('userPwd');
+      const userPwd = userPwdInput.value;
+      const resultEl = document.getElementById('userPwd-result');
+
+      // 저 중에 몇개를 쓰고있는지 카운팅해야됨 // true == 1로 간주
+      let passCount = /[a-z]/.test(userPwd);      // 소문자가 쓰이고 있는지
+      passCount += /[A-Z]/.test(userPwd);         // 대문자가 쓰이고 있는지
+      passCount += /[0-9]/.test(userPwd);         // 숫자가 쓰이고 있는지
+      passCount += /[^a-zA-Z0-9\s]/.test(userPwd);// 특수문자(영문,숫자,공백을 제외)가 쓰이고 있는지
+
+      console.log(passCount);
+
+      if(userPwd.length >= 5 && userPwd.length <= 20 && passCount >= 3){
+        resultEl.innerHTML = '비밀번호 형식입니다.';
+        resultEl.style.color = 'green';
+      }else{
+        resultEl.innerHTML = '비밀번호 형식이 아닙니다.';
+        resultEl.style.color = 'red';
+        userPwdInput.select();
+      }
+
+    }
+
+    document.getElementById('userPwd-btn').addEventListener('click', verifyUserPwd);
+  </script>
+
+  <hr>
+
+  <h2>IP주소 검사하기</h2>
+  IP 주소 : <input type="text" id="ip" placeholder="ex) 192.168.10.123">
+  <button id="ip-btn">확인</button>
+  <div id="ip-result"></div>
+
+  <script>
+    // ip 검사용 함수
+    const verifyIp = () => {
+
+      // IP형식 : 0.0.0.0 ~ 255.255.255.255
+      /*
+        각 영역마다 한자리/두자리/세자리 일수 있음
+        한자리 :   0 ~   9    => [0-9]
+        두자리 :  10 ~  99    => [1-9][0-9]
+        세자리 : 100 ~ 199    => 1[0-9][0-9]
+                 200 ~ 249    => 2[0-4][0-9]
+                 250 ~ 255    => 25[0-5]
+
+        ([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.  => 총 3세트
+        ([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])    => 마지막에
+      */
+      const regIp = /^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])$/;
+      
+    }
+  </script>
+
 
 
   
