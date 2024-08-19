@@ -121,6 +121,8 @@
   <input type="text" id="parent-msg">
   <button id="parent-btn">팝업창(자식창)에게 전송</button>
 
+  <div id="child-msg-result"></div>
+
 
 
   <script>
@@ -177,6 +179,61 @@
 
     })
 
+  </script>
+
+  <h3>타이머 관련 함수</h3>
+
+  <button id="timeout1">3초뒤에 알람 출력</button>
+  <button id="timeout2">팝업창</button>
+
+  <script>
+    /*
+      * [window.]setTimeout(function, ms)
+        1. 해당 ms 뒤에 function을 실행해주는 메소드
+        2. 단 한번만 동작됨 
+    */
+    document.getElementById('timeout1').addEventListener('click', () => {
+
+      setTimeout(() => {
+        alert('펑');
+      }, 3000);
+
+    })
+
+    document.getElementById('timeout2').addEventListener('click', () => {
+      const popup = open('./popup.html', '', 'width=500, height=500');
+      popup.alert('클릭 후 3초 뒤에 해당 창은 닫힙니다.');
+      setTimeout(() => {
+        popup.close(); // window.close() : 특정 창을 닫는 메소드
+      }, 3000);
+    })
+  </script>
+
+  <div id="time" style="font-size:32px; color:red;"></div>
+
+  <script>
+    /*
+      * [window.]setInterval(function, ms)
+        1. 해당 ms 마다 반복해서 function을 실행해주는 메소드
+        2. setTimeout과 다르게 반복해서 동작됨
+    */
+    const changeTime = () => {
+      const now = new Date();
+
+      let hour = now.getHours();
+      let minute = now.getMinutes();
+      let second = now.getSeconds();
+
+      // 추가작업 : 12시간형식으로, 시/분/초가 각각 한자리 수일 경우 앞에 0이 붙어지도록
+      
+
+
+      document.getElementById('time').innerHTML
+        = hour + ":" + minute + ":" + second;
+    }
+
+    changeTime();
+    setInterval(changeTime, 1000);
   </script>
 
 
