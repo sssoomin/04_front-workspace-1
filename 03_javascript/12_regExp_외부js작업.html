@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script rel="javascript" src="../assets/js/regExp.js"></script>
+</head>
+<body>
+
+  <!-- 
+    * 정규표현식
+      1. Regular Expression 
+      2. 어떤 문자열이 특정 패턴을 가지고 있는지 확인하기 위한 표현식
+      3. 정규표현식을 잘 쓰게 되면 복잡한 조건검사할 필요 없음
+      4. JavaScript 정규식 작성 예시
+         1) 리터럴 표기법
+            const reg = /pattern/[flags];
+         2) 생성자 이용
+            const reg = new RegExp('pattern'[, 'flags']);
+            const reg = new RegExp(/pattern/[, 'flags']);
+      5. 정규식과 관련된 메소드
+         1) 정규식.test(문자열)       : 문자열 중 정규식과 일치하는 부분이 있으면 true / 없으면 false 반환 
+         2) 문자열.search(정규식)     : 문자열 중 정규식과 일치하는 부분의 시작인덱스 반환 / 없으면 -1반환
+         3) 문자열.replace(정규식, 바꿀값) : 문자열에서 정규식과 일치하는 부분을 바꿀값으로 치환해서 반환 
+  -->
+  
+  <h2>우편번호 검사하기</h2>
+  우편번호 : <input type="text" id="postcode" placeholder="ex) 80501">
+  <button id="postcode-btn">확인</button>
+  <div id="postcode-result"></div>
+
+  <hr>
+
+  <h2>휴대전화 검사하기</h2>
+  휴대전화 : <input type="text" id="mobile" placeholder="ex) 010-1234-1234">
+  <button id="mobile-btn">확인</button>
+  <div id="mobile-result"></div>
+
+  <hr>
+
+  <h2>아이디 검사하기</h2>
+  아이디 : <input type="text" id="userId" placeholder="ex) user_01">
+  <button id="userId-btn">확인</button>
+  <div id="userId-result"></div>
+
+  <hr>
+
+  <h2>비밀번호 검사하기</h2>
+  비밀번호 : <input type="text" id="userPwd" placeholder="ex) Password12!@">
+  <button id="userPwd-btn">확인</button>
+  <div id="userPwd-result"></div>
+
+  <hr>
+
+  <h2>IP주소 검사하기</h2>
+  IP 주소 : <input type="text" id="ip" placeholder="ex) 192.168.10.123">
+  <button id="ip-btn">확인</button>
+  <div id="ip-result"></div>
+
+  <hr>
+
+  <h2>이메일 검사하기</h2>
+  이메일 : <input type="text" id="email" placeholder="ex) user01@naver.com">
+  <button id="email-btn">확인</button>
+  <div id="email-result"></div>
+
+  <hr>
+
+  <a href="./13_bom.html">bom.html 문서로가기</a>
+
+  
+</body>
+</html>

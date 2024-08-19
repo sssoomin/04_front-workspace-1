@@ -225,7 +225,10 @@
       let second = now.getSeconds();
 
       // 추가작업 : 12시간형식으로, 시/분/초가 각각 한자리 수일 경우 앞에 0이 붙어지도록
-      
+      hour = hour > 12 ? hour - 12 : hour;
+      hour = hour < 10 ? "0" + hour : hour;
+      minute = minute < 10 ? "0" + minute : minute;
+      second = second < 10 ? "0" + second : second;
 
 
       document.getElementById('time').innerHTML
