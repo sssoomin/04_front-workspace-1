@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css');
+  </style>
+</head>
+<body>
+
+  <!-- 
+    * BOM
+      1. Browser Object Model (브라우저 객체 모델)
+      2. 브라우저의 구성 요소와 관련된 객체
+      3. 종류
+         1) window  : 브라우저 화면 자체를 의미 (모든 JavaScript 객체의 최상위 객체)
+         2) history : 방문했던 경로를 기억하고 있는 객체
+         3) location: 경로(URL)를 관리하는 객체
+         4) screen  : 브라우저 화면 정보를 관리하는 객체
+  -->
+
+  <h2>history</h2>
+  <button onclick="console.log(history);">history객체확인</button>
+
+  <div>
+    <button id="back-btn"><i class="fa-solid fa-arrow-left"></i></button>
+    <button id="forward-btn"><i class="fa-solid fa-arrow-right"></i></button>
+  </div>
+
+  <script>
+    /*
+      * history 주요 메소드
+        1) history.back()   : 이전페이지로 이동
+        2) history.forward(): 다음페이지로 이동
+        3) history.go(n)    : n단계 페이지로 이동
+    */
+    document.getElementById('back-btn').addEventListener('click', () => {
+      // history.go(-1);
+      history.back();
+    })
+
+    document.getElementById('forward-btn').addEventListener('click', () => {
+      // history.go(1);
+      history.forward();
+    })
+  </script>
+
+  <hr>
+
+  <h2>location</h2>
+  <button onclick="console.log(location);">location객체확인</button>
+
+  <h3>다른 페이지로 이동</h3>
+  <div>
+    <!-- a 태그는 기본적으로 페이지 이동되는 디폴트 이벤트 보유, href 속성으로 이동할 url 작성가능 -->
+    <a href="http://www.naver.com">네이버로 이동</a> <br>
+
+    <!-- 단, 타 요소 클릭시 페이지 이동시키고자 할 경우 -->
+    <button id="google-btn">구글로 이동</button>
+  </div>
+
+  <script>
+    /*
+      * location 객체 주요 속성 및 메소드
+        1) location.href        : 현재 주소창의 url주소를 가지는 속성
+        2) location.assign(url) : 전달된 url로 페이지 이동 (뒤로가기 가능)
+        3) location.replace(url): 전달된 url로 페이지 이동 (뒤로가기 불가능)
+        4) location.reload()    : 새로고침
+    */
+  </script>
+  
+</body>
+</html>
