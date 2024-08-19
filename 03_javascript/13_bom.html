@@ -58,7 +58,14 @@
     <a href="http://www.naver.com">네이버로 이동</a> <br>
 
     <!-- 단, 타 요소 클릭시 페이지 이동시키고자 할 경우 -->
-    <button id="google-btn">구글로 이동</button>
+    <button id="google-btn">구글로 이동</button> <br>
+    <div style="background:red; width:200px; height:50px" onclick="location.href='http://www.youtube.com';">유튜브로 이동</div>
+  </div>
+
+  <h3>새로고침</h3>
+
+  <div>
+    <button id="refresh-btn"><i class="fa-solid fa-rotate-right"></i></button>
   </div>
 
   <script>
@@ -67,12 +74,115 @@
         1) location.href        : 현재 주소창의 url주소를 가지는 속성
         2) location.assign(url) : 전달된 url로 페이지 이동 (뒤로가기 가능)
         3) location.replace(url): 전달된 url로 페이지 이동 (뒤로가기 불가능)
-        4) location.reload()    : 새로고침
+        4) location.reload()    : 새로고침 (현재 위치에서)
     */
     document.getElementById('google-btn').addEventListener('click', () => {
-      
+      // location.href = 'http://www.google.com';
+      // location.assign('http://www.google.com');
+      location.replace('http://www.google.com');
+    })
+
+    document.getElementById('refresh-btn').addEventListener('click', () => {
+      // location.href = location.href;
+      location.reload();
     })
   </script>
+
+  <hr>
+
+  <h2>screen</h2>
+
+  <button onclick="fnScreenCheck();">screen객체확인</button>
+  <script>
+    /*
+      * screen 객체 주요 속성
+        1) screen.width       : 스크린 전체 너비
+        2) screen.height      : 스크린 전체 높이 
+        3) screen.availWidth  : 스크린 가용 너비
+        4) screen.availHeight : 스크린 가용 높이
+    */
+    function fnScreenCheck() {
+      console.log(screen);
+      console.log('스크린 너비:', screen.width);
+      console.log('스크린 높이:', screen.height);
+      console.log('스크린 가용너비:', screen.availWidth);
+      console.log('스크린 가용높이:', screen.availHeight);
+    }
+  </script>
+
+  <hr>
+
+  <h2>window객체</h2>
+
+  <h3>팝업창 열기 (부모창)</h3>
+  <button id="naver-popup">네이버창</button> <br><br>
+
+  <button id="my-popup">내가만든팝업창</button> <br>
+  <input type="text" id="parent-msg">
+  <button id="parent-btn">팝업창(자식창)에게 전송</button>
+
+
+
+  <script>
+    /*
+      * [window.]open(url, target, features)
+        1. 새로운 팝업창을 띄울수 있는 메소드
+        2. 새로 띄워진 팝업창을 제어할 수 있는 해당 창의 window객체 반환 
+        3. 팝업창을 자식창, 팝업창을 열게 해준 창을 부모창이라 함
+        4. 인자값
+           1) url     : 팝업창에 띄우고자 하는 url 주소
+           2) target  : 띄우고자 하는 창의 이름 
+           3) features: 팝업창의 특성
+              ㄴ width    : 창의 너비 (숫자)
+              ㄴ height   : 창의 높이 (숫자)
+              ㄴ top,left : 창의 위치 (숫자)
+              ㄴ resizable: 창 크기 조절 가능 여부 (yes|no)
+              ㄴ location : 주소창 여부
+              ㄴ menubar  : 메뉴바 여부
+              ㄴ scrollbars : 스크롤바 여부
+              ㄴ status   : 상태표시줄 여부
+              ㄴ toolbar  : 도구모음 여부 
+    */
+    document.getElementById('naver-popup').addEventListener('click', () => {
+      open('http://www.naver.com', 'ㅋㅋㅋ', 'width=500, height=500, left=100, top=100');
+    })
+
+    // 팝업창의 window객체를 받아줄 전역변수
+    let popupWindow;
+
+    document.getElementById('my-popup').addEventListener('click', () => {
+      // 팝업창 특성 (화면 중앙에 띄워지도록)
+      const width = 360;
+      const height = 520;
+      const left = (screen.width - width) / 2;
+      const top = (screen.height - height) / 2;
+
+      const features = "width=" + width + ", height=" + height + ", left=" + left + ", top=" + top;
+
+      popupWindow = open('./popup.html', 'mypopup', features);
+
+    })
+
+    document.getElementById('parent-btn').addEventListener('click', () => {
+      // #parent-msg input요소에 쓰여진 값을 
+      // 자식창인 팝업창의 #parent-msg-result에 출력
+      if(popupWindow) {
+        popupWindow.document.getElementById('parent-msg-result').innerHTML 
+            = document.getElementById('parent-msg').value;
+      }else{
+        alert('팝업창이 열려있지 않습니다.');
+      }
+
+
+
+    })
+
+  </script>
+
+
+
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
   
 </body>
 </html>
