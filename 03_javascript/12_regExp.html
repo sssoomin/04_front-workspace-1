@@ -194,6 +194,34 @@
 
   </script>
 
+  <hr>
+
+  <h2>휴대전화 검사하기</h2>
+  휴대전화 : <input type="text" id="mobile" placeholder="ex) 010-1234-1234">
+  <button id="mobile-btn">확인</button>
+  <div id="mobile-result"></div>
+
+  <script>
+    // 휴대전화 검사용 함수
+    const verifyMobile = () => {
+      // 010 으로 시작하고 -와 함께 매번 4자리수로 두 세트 작성되어있는지 비교할 패턴
+      const regMobile = /^010(-[0-9]{4}){2}$/;
+      const mobileInput = document.getElementById('mobile');
+      const resultEl = document.getElementById('mobile-result');
+
+      if(regMobile.test(mobileInput.value)){
+        resultEl.innerHTML = '휴대전화 형식입니다.';
+        resultEl.style.color = 'green';
+      }else{
+        resultEl.innerHTML = '휴대전화 형식에 맞지 않습니다.';
+        resultEl.style.color = 'red';
+        mobileInput.focus();
+      }
+    }
+
+    document.getElementById('mobile-btn').addEventListener('click', verifyMobile);
+  </script>
+
 
   
 </body>
