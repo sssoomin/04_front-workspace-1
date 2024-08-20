@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn1">버튼1</button>
+  <div id="result1"></div>
+
+  <script>
+    /*
+      #btn1 클릭시
+      <ul><li>봄</li><li>여름</li><li>가을</li><li>겨울</li></ul>
+      요소를 #result1에 넣으시오.
+    */
+    // 고전 이벤트 모델
+    document.getElementById("btn1").onclick = () => {
+      const seasons = ['봄', '여름', '가을', '겨울'];
+
+      let result = '<ul>';
+      for(let season of seasons){
+        result += '<li>' + season + "</li>";
+      }
+      result += "</ul>";
+
+      document.getElementById("result1").innerHTML = result;
+    }
+  </script>
+  
+  <hr>
+
+  <button id="btn2" onclick="fnMakeLink();">버튼2</button>
+  <div id="result2"></div>
+
+  <script>
+    /*
+      #btn2 클릭시
+      <ul>
+        <li><a href="https://www.google.com/">구글</a></li>
+        <li><a href="https://www.naver.com/">네이버</a></li>
+        <li><a href="https://www.gdu.co.kr/">구디아카데미</a></li>
+      </ul>
+      요소를 #result2에 넣으시오.
+    */
+
+    // 인라인 이벤트 모델
+    function fnMakeLink() {
+      const sites = [
+        { url: 'https://www.google.com/', name: '구글' },
+        { url: 'https://www.naver.com/', name: '네이버' },
+        { url: 'https://www.gdu.co.kr/', name: '구디아카데미' },
+      ];
+
+      let result = "<ul>";
+      for(let site of sites){
+        result += '<li><a href="' + site.url + '">' + site.name + '</a></li>';
+      }
+      result += "</ul>";
+
+      document.getElementById("result2").innerHTML = result;
+    }
+  </script>
+
+  <hr>
+
+  <button id="btn3">버튼3</button>
+  <input type="password" id="pwd">
+
+  <script>
+    /*
+      #btn3 클릭시
+      #pwd input요소의 type을 text로 변경하시오.
+      이때 토글형식으로 작업
+      즉, password type일 경우 text로
+          text type일 경우 password로 
+    */
+    // 표준 이벤트 모델
+    document.getElementById("btn3").addEventListener("click", () => {
+      const pwdInput = document.getElementById("pwd");
+
+      // dom 객체 type속성 : pwdInput.type
+      // html요소 type속성 : pwdInput.getAttribute("type")
+
+      if(pwdInput.type == 'password'){
+        pwdInput.type = 'text';
+      }else {
+        pwdInput.type = 'password';
+      }
+
+    })
+  </script>
+
+</body>
+</html>

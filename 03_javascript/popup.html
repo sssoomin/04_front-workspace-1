@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 style="text-align:center">팝업창(자식창)</h1>
+  <div id="parent-msg-result"></div>
+
+  <input type="text" id="child-msg">
+  <button id="child-btn">부모창에게 전송</button>
+
+  <script>
+    document.getElementById('child-btn').addEventListener('click', () => {
+      // #child-msg input요소의 쓰여진 값을
+      // 부모창의 #child-msg-result 요소에 출력
+
+      // * opener : 부모창의 window 객체를 의미
+      opener.document.getElementById('child-msg-result').innerHTML
+        = document.getElementById('child-msg').value;
+    })
+  </script>
+
+
+
+</body>
+</html>
